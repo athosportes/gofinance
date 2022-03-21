@@ -1,0 +1,36 @@
+{
+    "window.zoomLevel": 1,
+    "workbench.startupEditor": "newUntitledFile",
+    "workbench.colorTheme": "Omni",
+    "editor.fontFamily": "Fira Code",
+    "editor.fontLigatures": true,
+    "editor.minimap.enabled": false,
+    "editor.suggestSelection": "first",    
+    "editor.parameterHints.enabled": true,
+    "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+    "editor.autoClosingBrackets": "always",
+    "editor.hover.enabled": true,
+    "editor.quickSuggestions": {
+        "other": true,
+        "comments": true,
+        "strings": true
+    },
+    "editor.quickSuggestionsDelay": 1,
+    "explorer.compactFolders": false,
+    "json.schemas": [
+        {
+            "name": "vscode-expo-manifest",
+            "url": "file:///Users/athosportes/Library/Application%20Support/Code/User/globalStorage/bycedric.vscode-expo/manifest-44.0.0.json",
+            "fileMatch": [
+                "app.json",
+                "app.config.json"
+            ]
+        }
+    ],
+    "workbench.iconTheme": "material-icon-theme",
+    "editor.formatOnSave": false,
+    "bracketPairColorizer.depreciation-notice": false,
+    "editor.acceptSuggestionOnCommitCharacter": true,
+    "editor.suggestOnTriggerCharacters": true,
+    
+}
