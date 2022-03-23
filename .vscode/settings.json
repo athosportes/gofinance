@@ -10,11 +10,11 @@
     "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
     "editor.autoClosingBrackets": "always",
     "editor.hover.enabled": true,
-    "editor.quickSuggestions": {
-        "other": true,
-        "comments": true,
-        "strings": true
-    },
+    // "editor.quickSuggestions": {
+    //     "other": true,
+    //     "comments": true,
+    //     "strings": true
+    // },
     "editor.quickSuggestionsDelay": 1,
     "explorer.compactFolders": false,
     "json.schemas": [
@@ -32,5 +32,6 @@
     "bracketPairColorizer.depreciation-notice": false,
     "editor.acceptSuggestionOnCommitCharacter": true,
     "editor.suggestOnTriggerCharacters": true,
+    "typescript.suggest.paths": false
     
 }
