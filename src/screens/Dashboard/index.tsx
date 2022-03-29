@@ -1,8 +1,12 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 import { HighlightCard } from "../../components/HighLigthCard";
-import { TransactionCard, TransactionCardProps } from "../../components/TransactionCard";
-
+import {
+  TransactionCard,
+  TransactionCardProps,
+} from "../../components/TransactionCard";
 
 import {
   Container,
@@ -18,6 +22,7 @@ import {
   Transactions,
   Title,
   TransactionList,
+  LogoutButton,
 } from "./styles.ts";
 
 export interface DataListProps extends TransactionCardProps {
@@ -25,41 +30,48 @@ export interface DataListProps extends TransactionCardProps {
 }
 
 export function Dashboard() {
-  const data: DataListProps[] = [
-    {
-      id: '1',
-      type: "positive",
-      title: "Desenvolvimento de sites",
-      amount: "R$ 12.000,00",
-      category: {
-        name: "Vendas",
-        icon: "dollar-sign",
-      },
-      date: "13/04/2022",
-    },
-    {
-      id: '2',
-      type: "negative",
-      title: "Hamburguerria Pizzy",
-      amount: "R$ 59,00",
-      category: {
-        name: "Alimentação",
-        icon: "coffee",
-      },
-      date: "13/04/2022",
-    },
-    {
-      id: '3',
-      type: "negative",
-      title: "Aluguel do apartamento",
-      amount: "R$ 1.200,00",
-      category: {
-        name: "Casa",
-        icon: "shopping-bag",
-      },
-      date: "13/04/2022",
-    },
-  ];
+  const [data, setData] = useState<DataListProps[]>([]);
+
+  const dataKey = "@gofinance:transactions";
+
+  async function removeAll(){
+    await AsyncStorage.removeItem(dataKey)
+  }
+
+  async function loadTransactions() {
+    const response = await AsyncStorage.getItem(dataKey);
+    const transactions = response ? JSON.parse(response) : [];
+
+    const transactionsFormatted: DataListProps[] = transactions
+    .map((item: DataListProps) => {
+        const amount = Number(item.amount).toLocaleString("pt-BR", {
+          style: "currency",
+          currency: "BRL",
+        });
+
+        const date = Intl.DateTimeFormat("pt-BR", {
+          day: "2-digit",
+          month: "2-digit",
+          year: "2-digit",
+        }).format(new Date(item.date));
+
+        return {
+          id: item.id,
+          name: item.name,
+          amount,
+          type: item.type,
+          category: item.category,
+          date,
+        }
+      }
+    );
+
+    setData(transactionsFormatted);
+  }
+  useEffect(() => {
+    loadTransactions();
+  }, []);
+
   return (
     <Container>
       <Header>
@@ -75,7 +87,9 @@ export function Dashboard() {
               <UserName>Athos</UserName>
             </User>
           </UserInfo>
-          <Icon name="power" />
+          <LogoutButton onPress={() => {}}>
+            <Icon name="power" />
+          </LogoutButton>
         </UserWrapper>
       </Header>
       <HighlightCards>
@@ -104,7 +118,7 @@ export function Dashboard() {
 
         <TransactionList
           data={data}
-          keyExtractor={data}
+          keyExtractor={data.id}
           renderItem={({ item }) => <TransactionCard data={item} />}
         />
       </Transactions>
