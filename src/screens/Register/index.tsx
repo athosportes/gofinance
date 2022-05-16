@@ -22,7 +22,7 @@ import {
   Form,
   Fields,
   TransactionsTypes,
-} from "./styles.ts";
+} from "./styles";
 
 interface FormData {
   name: string;

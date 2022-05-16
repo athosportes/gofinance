@@ -4,7 +4,7 @@ import { Control, Controller } from "react-hook-form";
 
 import { Input } from "../Input";
 
-import { Container, Error } from "./styles.ts";
+import { Container, Error } from "./styles";
 
 interface Props extends TextInputProps {
   control: Control;
